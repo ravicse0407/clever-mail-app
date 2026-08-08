@@ -57,6 +57,10 @@ export function EmailDetail({ email, onToggleImportant, onToggleTask, completedT
   const generate = (index = toneIndex) => {
     setGenerating(true);
     const next = email.replies[index % email.replies.length];
+    if (!next) {
+      setGenerating(false);
+      return;
+    }
     window.setTimeout(() => {
       setReply(next.text);
       setGenerating(false);
@@ -65,7 +69,7 @@ export function EmailDetail({ email, onToggleImportant, onToggleTask, completedT
   };
 
   const copyReply = async () => {
-    const text = reply || email.replies[0].text;
+    const text = reply || email.replies[0]?.text || "";
     try {
       await navigator.clipboard.writeText(text);
       toast.success("Reply copied to clipboard");

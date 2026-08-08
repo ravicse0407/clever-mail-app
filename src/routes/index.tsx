@@ -50,7 +50,7 @@ function Dashboard() {
   const [folder, setFolder] = useState<FolderKey>("inbox");
   const [query, setQuery] = useState("");
   const [priority, setPriority] = useState<Priority | "All">("All");
-  const [selectedId, setSelectedId] = useState(demoEmails[0].id);
+  const [selectedId, setSelectedId] = useState(demoEmails[0]!.id);
   const [completed, setCompleted] = useState<Record<string, string[]>>({});
   const [navOpen, setNavOpen] = useState(false);
 
